@@ -1,5 +1,6 @@
-package com.matovic.restapi.models.entities;
+package com.matovic.restapi.models;
 
+import com.matovic.restapi.models.entities.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,5 +15,5 @@ public interface PageRepository extends JpaRepository<Page, Long> {
 
     Page findBySlugAndIdNot(String slug, Long id);                  // 2. nacin (aktuelan)
 
-    List<Page> findAllByOrderBySortingAsc();
+    List<Page> findAllByOrderByTitleAsc();
 }

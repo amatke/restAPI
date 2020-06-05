@@ -1,7 +1,7 @@
 package com.matovic.restapi.controllers;
 
+import com.matovic.restapi.models.PageRepository;
 import com.matovic.restapi.models.entities.Page;
-import com.matovic.restapi.models.entities.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
