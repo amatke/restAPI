@@ -33,14 +33,6 @@ public class AdminPageRestController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<Page> getPageById(@PathVariable(value = "id") Long id){
-        Optional<Page> page = Optional.of(pageRepository.getOne(id));
-        if(page.isPresent()){
-            return new ResponseEntity<>(page.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
@@ -49,15 +41,27 @@ public class AdminPageRestController {
         return page;
     }
 
-    @PutMapping(consumes = "application/json")
-    @ResponseStatus(HttpStatus.OK)
-    public Page editPage(@RequestBody Page page){
-        pageRepository.save(page);
-        return page;
+    @GetMapping("/edit/{id}")
+    public ResponseEntity<Page> edit(@PathVariable Long id){
+        Optional<Page> page = Optional.of(pageRepository.getOne(id));
+        return new ResponseEntity<> (page.get(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public String editPage(@PathVariable Long id){
+
+    @PutMapping(path = "/edit", consumes = "application/json")
+    public Page put(@RequestBody Page page){
+        return pageRepository.save(page);
+    }
+
+    @GetMapping(path = "/edit/{slug}/{id}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public Page findBySlugAndIdNot(@PathVariable Long id, @PathVariable String slug){
+        return pageRepository.findBySlugAndIdNot(slug, id);
+    }
+
+
+    @DeleteMapping("/delete/{id}")
+    public String deletePage(@PathVariable Long id){
         try {
             pageRepository.deleteById(id);
             return "Page deleted.";
