@@ -9,10 +9,10 @@ http://localhost:8090/admin/pages                                   -> @GetMappi
 
 http://localhost:8090/admin/pages/{slug}                            -> @GetMapping for Page by slug (home, about-us, contact, ... )
 
-http://localhost:8090/admin/pages                                   -> @PostMapping for Page
+http://localhost:8090/admin/pages                                   -> @PostMapping for Page (@RequestBody Page page)
 
-http://localhost:8090/admin/pages/edit/{id}                         -> @GetMapping for Page
+http://localhost:8090/admin/pages/edit/{id}                         -> @GetMapping for Page (id of Page)
 
-http://localhost:8090/admin/pages/edit  (@RequestBody Page page)    -> @PutMapping for Page
+http://localhost:8090/admin/pages/edit                              -> @PutMapping for Page (@RequestBody Page page)
 
-http://localhost:8090/admin/pages/delete/{id}                         -> @DeleteMapping for Page
+http://localhost:8090/admin/pages/delete/{id}                       -> @DeleteMapping for Page (id of Page)
